@@ -1,0 +1,33 @@
+{
+  "name": "imageList",
+  "version": "0.0.1",
+  "authors": [
+    "Daniel Harding Knudsen <danielhardingknudsen@gmail.com>"
+  ],
+  "description": "Responsive imageList renderer",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "imagelist",
+    "grid",
+    "view",
+    "responsive",
+    "js"
+  ],
+  "license": "MIT",
+  "homepage": "danielharding.dk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "bean": "~1.0.14"
+  }
+}

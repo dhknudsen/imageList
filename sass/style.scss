@@ -1,0 +1,223 @@
+// General ///////////////////////////////////////////////
+
+html, body { height: 100%; margin: 0; padding: 0; }
+
+body {
+	font-family: "Helvetica", "Helvetica Neue", "Arial", sans-serif;
+	font-size: 18px;
+}
+
+#container 	{ padding-top: 73px }
+.pull-left 	{ float: left; text-align: left; padding: 0 10px }
+.pull-right { float: right; text-align: right }
+.divider 		{ border-right: 1px solid rgba(255,255,255,0.2) }
+
+
+// Header ///////////////////////////////////////////////
+
+header {
+	width: 100%; 
+	padding: 15px;
+	background-color: #0e1316;
+	position: fixed;
+	z-index: 40000;
+	box-sizing: border-box;
+	font-size: 0.8em;
+
+}
+
+	header img 		{ width: 142px }
+	header .label { color: gray; padding-top: 5px }
+	header .title { color: white }
+
+
+// Clearfix ///////////////////////////////////////////////
+// http://css-tricks.com/snippets/css/clear-fix/ 
+
+.group:before,
+.group:after { content: ""; display: table } 
+.group:after { clear: both }
+.group { zoom: 1 } // For IE 6/7 (trigger hasLayout)
+
+
+// Image List Wrapper /////////////////////////////////////////////////
+.wrapper {
+	padding: 20px;
+	margin: 0 auto 60px;	
+	max-height: 700px;
+	position: relative;
+	
+	background-color: rgb(250,250,250);
+
+	// If the content exceeds the maximum height 
+	//the parent container gets scrollable 	
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch; 
+
+	// It could also be set to overflow: hidden??
+	// overflow-y: hidden
+
+
+
+	transition: max-height 500ms ease-in-out;
+}
+
+
+// ImageList ///////////////////////////////////////////////
+
+.image-list {
+	// If parent is (most likely) an ul
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+	.image-list > .list-image {
+		display: block;
+	  float: left;
+	  position: relative;
+	  padding: 5px 0 30px;
+	  margin: 0;
+		opacity: 0;
+
+		// intro animation on first load
+		animation: fadeInDown 1s cubic-bezier(.76,.2,.15,.99) 100ms normal forwards;
+		
+		// Animates image margin (gutters) on window resize
+		transition: margin 300ms ease-in;
+
+	}
+
+		.image-list > .list-image div {
+			width: 140px;
+			height: 140px;
+			overflow: hidden;
+			padding: 0;
+		  margin: 0;
+			border: 1px solid rgb(220,220,220);			
+		}
+
+			.image-list > .list-image div img {
+				height: 100%;
+			}
+
+			
+			.image-list > .list-image div span {
+				display: inline-block;
+				position: absolute;
+			  	  
+			  height: 25px;
+				width: 100%;
+			  bottom: 0px;
+			  
+				// Hide excess and create ellipsis
+			  overflow: hidden;
+				white-space: nowrap;
+  			text-overflow: ellipsis;
+				text-align: center;
+				
+				font-size: 0.8em;
+			  font-weight: normal;
+				color: #0e1316;
+				
+			}
+
+			/* MY OWN INTERPRETATION - text on top of image 
+			.image-list > .list-image div span {
+				display: inline-block;
+				position: absolute;
+			  
+			  max-height: 120px;
+				max-width: 120px;
+				
+			  top: 80%;
+			  left: 50%;
+			  transform: translate(-50%, -100%);	
+				
+				// Hide excess and create ellipsis
+			  overflow: hidden;
+				white-space: nowrap;
+  			text-overflow: ellipsis;
+
+				font-weight: bold;
+				color: white;
+				
+			}*/
+
+
+// Load Button /////////////////////////////////////////////
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+.button {
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #d01219;
+  border: 0;
+  border-bottom: 2px solid #A00D13;
+  cursor: pointer;
+  box-shadow: inset 0 -2px #A00D13;
+  outline: none;
+}
+
+.button:active { outline: none; box-shadow: none }
+
+#show-more {
+  display: block;
+  width: 300px;
+  
+  margin: 0 auto;
+  opacity: 0;
+
+  // Animates image margin (gutters) on window resize
+	transition: all 300ms ease-in;
+	// Intro animation 
+	animation: fadeInUp 1s cubic-bezier(.76,.2,.15,.99) 400ms normal forwards; 
+
+}
+
+#show-more:active { bottom: 9.8% }
+
+/* MY OWN INTERPRETATION - fixed hover
+#show-more {
+  width: 300px;
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  margin: -70px 0 0 -170px;
+  opacity: 0;
+
+  // Animates image margin (gutters) on window resize
+	transition: all 300ms ease-in;
+
+	animation: fadeInUp 1s cubic-bezier(.76,.2,.15,.99) 400ms normal forwards; 
+}
+*/
+
+
+// Animations //////////////////////////////
+// Modified from https://github.com/daneden/animate.css/blob/master/animate.css
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translate3d(0, -100%, 0) }
+  100% { opacity: 1; transform: none }
+}
+.fadeInDown { animation-name: fadeInDown }
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translate3d(0, 100%, 0) }
+  100% { opacity: 1; transform: none }
+}
+.fadeInUp { animation-name: fadeInUp;}
+
+
