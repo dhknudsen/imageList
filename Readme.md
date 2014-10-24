@@ -6,40 +6,28 @@ _Description: This is a sample implementation of an Imagelist utility function u
 
 _To get started_ 
 
+ 
+1. _Download or fork this project_
+2. _open the index.html in your browser_
 
-
-
-1. _lorem_
-2. _ipsum_
+_that's it!!!_
 
 
 ## Deploying
 
-### _How to setup the deployment environment_
+### _Want to play around with the build setup?_
 
-- _Required heroku addons, packages, or chef recipes._
-- _Required environment variables or credentials not included in git._
-- _Monitoring services and logging._
 
-### _How to deploy_
+3. _have node and npm installed_
+4. _run 'npm install gulp --global' in your terminal or Powershell_
+5. _run 'npm install gulp --save' from the project folder_ 
+6. _all files should be downloaded with the project, so you can go ahead and run 'gulp' in your shell_
+7. _Navigate to http://localhost:4000_
 
-## Troubleshooting & Useful Tools
+_Note that the CSS is compiled from Sass. If you do not have ruby or Sass installed, you can get help here: http://sass-lang.com/install_
 
-_Examples of common tasks_
 
-> e.g.
-> 
-> - How to make curl requests while authenticated via oauth.
-> - How to monitor background jobs.
-> - How to run the app through a proxy.
+## Feedback is welcome
 
-## Contributing changes
+_Should you have any comments, questions or problems with the project package, please do not hesistate to shoot me an email._
 
-- _Internal git workflow_
-- _Pull request guidelines_
-- _Tracker project_
-- _Google group_
-- _irc channel_
-- _"Please open github issues"_
-
-## License
