@@ -26,8 +26,8 @@
 	buttonTmpl,
 
 	// tracker of number of rendered. 
+	firstrun = true,
 	currentlyShowing = null;
-
 
 	/**
 	 * Renders an imageList given the data input in the specified output container
@@ -39,6 +39,12 @@
 	window.layoutImages = function (jsonArr, options) {
 		// Fail silently if data input is invalid 
 		if(!jsonArr instanceof Array) return;
+
+		if(firstrun) {
+			firstrun = false;
+		} else {
+			document.getElementById(settings.containerId).innerHTML = '';
+		}
 
 		// Merge defaults with user settings 
 		settings = _.extend({}, defaults, options);
@@ -63,15 +69,21 @@
 		currentlyShowing = (settings.maxrender && settings.maxrender < jsonArr.length) ? settings.maxrender : jsonArr.length;
 
 		// Render the selected image set to the parent element
-		renderImages(jsonArr.slice(0,currentlyShowing), tmpl, parent);
+		renderImages(jsonArr.slice(0,currentlyShowing-1), tmpl, parent);
 
+		// Save image elements for later manipulation
+		children = parent.children;
+
+		// Set gutters between images (first load)
+		adjustGutterWidth();
+		
 		// Add the 'more' button
 		parent.insertAdjacentHTML('afterend', buttonTmpl({label: settings.buttonText}));
-		button = document.querySelector('button');
+		button = document.querySelector('#show-more');
 
 		// Add click handler to button
 		bean.on(button, 'click touchstart',	function (e) {
-
+			log('I should light up like a Xmas tree');
 			var data; 
 			if(currentlyShowing+2 <= jsonArr.length){
 				data = jsonArr.slice(currentlyShowing, currentlyShowing+2);
@@ -85,16 +97,9 @@
 			
 			renderImages(data, tmpl, parent);
 			adjustGutterWidth();
-
 		});
 
-		// Save image elements for later manipulation
-		children = parent.children;
 
-
-
-		// Set gutters between images (first load)
-		adjustGutterWidth();
 
 		// Update gutters when window resizes. 
 		window.onresize = adjustGutterWidth;
@@ -130,7 +135,6 @@
 		if(uri['queryKey'].hasOwnProperty('debug')) console.log(expression);
 	}
 
-
 	/**
 	 * Renders the given data into the desired output
 	 * @param  {Array} 	data
@@ -163,8 +167,8 @@
 		// Calculate the parent width to be occupied by images (total width - padding) 
 		parentWidth 		= parent.clientWidth - (paddingLeft + paddingRight),
 		
-		// Extract the current image container width after styles are applied
-		childWidth 			= parseInt(getStyle(parent.children[0], 'width'), 10),
+		// Extract the current image container width	
+		childWidth 			= parent.children[0].offsetWidth,
 
 		// Calculate how many images can fit in a row
 		numInRow 				= Math.floor(parentWidth/childWidth),
@@ -172,7 +176,7 @@
 		// Calculate the remaining space after filling the row
 		remainder				= parentWidth % childWidth;
 
-		//Deal with cases where we have less images than there can fit in the first row. 
+		//Deal with cases where we have less images than we can fit in the first row. 
 		if (numInRow > currentlyShowing) {
 			remainder = remainder + ((numInRow - currentlyShowing)*childWidth);
 			numInRow = currentlyShowing;
@@ -180,8 +184,10 @@
 
 
 		// Calculate the distribution of space between images in a row
-		newMarginRight 	= remainder / (numInRow-1);
+		newMarginRight 	= Math.floor10((remainder / (numInRow-1)), -1);
 
+		log('child (offset): ' + parent.children[0].offsetWidth + ' child (clientWidth): '+parent.children[0].offsetWidth);
+		log('paddingLeft: ' + paddingLeft + ' paddingRight: '+ paddingRight);
 				
 		log('parent: ' + parentWidth + ', child: ' + childWidth);
 		log('numinRow: ' + numInRow + ", remainder: " + remainder + ', newMarginRight: ' + newMarginRight );
@@ -215,6 +221,8 @@
 
 	  return strValue;
 	}
+
+	
 
 
 }());

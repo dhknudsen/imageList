@@ -36,6 +36,7 @@ header {
   z-index: 40000;
   box-sizing: border-box;
   font-size: 0.8em;
+  position: relative;
 }
 
 header img {
@@ -49,6 +50,21 @@ header .label {
 
 header .title {
   color: white;
+}
+
+header .dropdown {
+  position: absolute;
+  width: 30%;
+  height: 300px;
+  z-index: 2000;
+  background-color: white;
+  border: 1px solid gainsboro;
+  opacity: 0;
+  top: -50px;
+  right: 20px;
+  -webkit-transition: all 300ms ease-in-out;
+          transition: all 300ms ease-in-out;
+  pointer-events: none;
 }
 
 .group:before,
@@ -115,6 +131,7 @@ header .title {
   height: 25px;
   width: 100%;
   bottom: 0px;
+  left: 0px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -155,7 +172,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   vertical-align: top;
   width: 100%;
   height: 60px;
-  padding: 0;
+  padding: 0 20px;
   font-size: 22px;
   color: white;
   text-align: center;

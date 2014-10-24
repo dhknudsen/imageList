@@ -23,12 +23,26 @@ header {
 	z-index: 40000;
 	box-sizing: border-box;
 	font-size: 0.8em;
-
+	position: relative;
 }
 
 	header img 		{ width: 142px }
 	header .label { color: gray; padding-top: 5px }
 	header .title { color: white }
+
+	header .dropdown {
+		position: absolute;
+		width: 30%;
+		height: 300px;
+		z-index: 2000;
+		background-color: white;
+		border: 1px solid rgb(220,220,220);
+		opacity: 0;
+		top: -50px;
+		right: 20px;
+		transition: all 300ms ease-in-out;
+		pointer-events: none;
+	}
 
 
 // Clearfix ///////////////////////////////////////////////
@@ -109,6 +123,7 @@ header {
 			  height: 25px;
 				width: 100%;
 			  bottom: 0px;
+			  left: 0px;
 			  
 				// Hide excess and create ellipsis
 			  overflow: hidden;
@@ -157,7 +172,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   vertical-align: top;
   width: 100%;
   height: 60px;
-  padding: 0;
+  padding: 0 20px;
   font-size: 22px;
   color: white;
   text-align: center;
