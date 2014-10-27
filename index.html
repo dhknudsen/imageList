@@ -1,52 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="imageListApp">
   <head>
     <meta charset="utf-8">
     <title>Image List</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
-		<!-- CONTENT -->
-		
-		<header class="group">
-			<div class="pull-left divider">
-				<img src="imgs/header-logo.png" alt="">
-			</div>
-			<div class="pull-left">
-				<div class="label">code puzzle</div>
-				<div class="title">Image List</div>
-			</div>
-			<div class="pull-right"></div>
-		</header>
+  <body ng-cloak>
+		<div ng-include="app/navigation/navigation.tpl.html"></div>
 
-    <div id="container">
-    	<!-- ImageList to be rendered in here... -->
-    </div>
-
-		
-		<!-- TEMPLATES -->
-
-		<script type="text/template" id="imageTmpl">
-			<li class="list-image" style="-webkit-animation-delay: {{=delay}}; animation-delay: {{=delay}}">
-				<div>
-					<img src="{{=url}}" alt="{{=name}}">
-					<span>{{=name}}</span>
-				</div>
-			</li>
-		</script>
-
-		<script type="text/template" id="buttonTmpl">
-			<button id="show-more" class="button">{{=label}}</button>
-		</script>
-
+    <ui-view="main" class="container" id="main"></ui-view>
 
 		<!-- SCRIPTS -->
-
 		<script src="js/bigData.js"></script>
-    
-		<script src="vendors/underscore/underscore-min.js"></script>
-    <script src="vendors/bean/bean.min.js"></script>
-    <script src="js/Math.extensions.js"></script>
-    <script src="js/main.js"></script>
+    <script src="vendors/angular/angular.min.js"></script>
+		
   </body>
 </html>

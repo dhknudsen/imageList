@@ -1,0 +1,12 @@
+<div class="wrapper">
+	<ul class="image-list group">
+		<li class="list-image" ng-repeat="item in grid.imageList">
+			<div>
+				<img src="{{item.url}}" alt="{{item.name}}">
+				<span>{{item.name}}</span>
+			</div>
+		</li>		
+	</ul>
+	<button class="show-more" ng-click="grid.loadmore()"></button>
+</div>
+
